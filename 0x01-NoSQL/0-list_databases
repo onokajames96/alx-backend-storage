@@ -1,2 +1,2 @@
 // List databases
-command ="show dbs"
+show dbs
