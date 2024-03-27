@@ -4,6 +4,7 @@ Module
 """
 import redis
 from uuid import uuid4
+from functools import wraps
 from typing import Union
 
 
@@ -18,6 +19,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @staticmethod    
     def count_calls(method: Callable) -> Callable:
         """
         Decorator that takes a single method Callable argument
