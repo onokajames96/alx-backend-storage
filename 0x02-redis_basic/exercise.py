@@ -25,3 +25,25 @@ class Cache:
         key = str(uuid4())
         self._redis.set(key, data)
         return key
+
+    def get(self, key: str, fn: Callable = None) \
+            -> Union[str, bytes, int, float, None]:
+        """
+        a get method that take a key
+        """
+        if fn:
+            return fn(self._redis.get(key))
+        data = self._redis.get(key)
+        return data
+
+    def get_str(self: bytes) -> str:
+        """
+        parametrize Cache.get with the correct conversion function.
+        """
+        return self.decode("utf-8")
+
+    def get_init(self, key: str) -> Union[int, None]:
+        """
+        parametrize Cache.get with the correct conversion function.
+        """
+        return self.get(key, fn=int)
