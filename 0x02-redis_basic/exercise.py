@@ -42,7 +42,7 @@ class Cache:
         """
         return self.decode("utf-8")
 
-    def get_init(self, key: str) -> Union[int, None]:
+    def get_int(self, key: str) -> Union[int, None]:
         """
         parametrize Cache.get with the correct conversion function.
         """
