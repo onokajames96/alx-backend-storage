@@ -26,14 +26,14 @@ class Cache:
         and returns a Callable.
         """
         @wraps(method)
-        def invoker(self, *args, **kwargs) -> Any:
+        def wrapper(self, *args, **kwargs) -> Any:
             """
             Invoking process
             """
             key = method.__qualname__
             self._redis.incr(key)
             return method(self, *args, **kwargs)
-        return invoker
+        return wrapper
 
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
